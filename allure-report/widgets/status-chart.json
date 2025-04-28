@@ -1,0 +1,1 @@
+[{"uid":"7ff53d235ae43747","name":"should add mens tshirt to cart and place order","time":{"start":1745848690970,"stop":1745848703315,"duration":12345},"status":"passed","severity":"normal"},{"uid":"659815619874786","name":"should login successfully and verify home page","time":{"start":1745848682787,"stop":1745848690960,"duration":8173},"status":"passed","severity":"normal"}]

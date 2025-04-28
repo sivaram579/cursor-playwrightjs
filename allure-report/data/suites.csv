@@ -1,0 +1,3 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","12345","should add mens tshirt to cart and place order","Chrome","Mon Apr 28 19:28:10 IST 2025","passed","Mon Apr 28 19:28:23 IST 2025","Order Tests","order.test.js","",""
+"","8173","should login successfully and verify home page","Chrome","Mon Apr 28 19:28:02 IST 2025","passed","Mon Apr 28 19:28:10 IST 2025","Login Tests","login.test.js","",""

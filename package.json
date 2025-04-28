@@ -1,0 +1,22 @@
+{
+  "name": "automation-exercise-tests",
+  "version": "1.0.0",
+  "description": "Automation Exercise Test Framework using Playwright",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "allure:generate": "allure generate ./allure-results --clean",
+    "allure:open": "allure open ./allure-report",
+    "allure:serve": "allure serve ./allure-results"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.42.1",
+    "dotenv": "^16.4.5",
+    "allure-playwright": "^2.0.0-beta.36"
+  },
+  "devDependencies": {
+    "allure-commandline": "^2.25.0"
+  }
+} 

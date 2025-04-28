@@ -1,0 +1,122 @@
+# Test info
+
+- Name: Order Tests >> should add mens tshirt to cart and place order
+- Location: F:\cursor-playwrightjs\tests\order.test.js:17:3
+
+# Error details
+
+```
+Error: expect(received).toContain(expected) // indexOf
+
+Expected substring: "ORDER PLACED!"
+Received string:    "Order Placed!"
+    at F:\cursor-playwrightjs\tests\order.test.js:44:30
+    at F:\cursor-playwrightjs\tests\order.test.js:42:5
+```
+
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Automation Exercise website":
+    - /url: /
+    - img "Automation Exercise website"
+  - list:
+    - listitem:
+      - link " Home":
+        - /url: /
+    - listitem:
+      - link " Products":
+        - /url: /products
+    - listitem:
+      - link " Cart":
+        - /url: /view_cart
+    - listitem:
+      - link " Logout":
+        - /url: /logout
+    - listitem:
+      - link " Delete Account":
+        - /url: /delete_account
+    - listitem:
+      - link " Test Cases":
+        - /url: /test_cases
+    - listitem:
+      - link " API Testing":
+        - /url: /api_list
+    - listitem:
+      - link " Video Tutorials":
+        - /url: https://www.youtube.com/c/AutomationExercise
+    - listitem:
+      - link " Contact us":
+        - /url: /contact_us
+    - listitem:  Logged in as Sivaram Somanchi
+- heading "Order Placed!" [level=2]
+- paragraph: Congratulations! Your order has been confirmed!
+- link "Download Invoice":
+  - /url: /download_invoice/400
+- link "Continue":
+  - /url: /
+- contentinfo:
+  - heading "Subscription" [level=2]
+  - textbox "Your email address"
+  - button ""
+  - paragraph: Get the most recent updates from our site and be updated your self...
+  - paragraph: Copyright © 2021 All rights reserved
+- insertion:
+  - iframe
+- insertion:
+  - iframe
+```
+
+# Test source
+
+```ts
+   1 | const { test, expect } = require('@playwright/test');
+   2 | const { allure } = require('allure-playwright');
+   3 | const LoginPage = require('../pages/LoginPage');
+   4 | const ProductPage = require('../pages/ProductPage');
+   5 |
+   6 | test.describe('Order Tests', () => {
+   7 |   let loginPage;
+   8 |   let productPage;
+   9 |
+  10 |   test.beforeEach(async ({ page }) => {
+  11 |     loginPage = new LoginPage(page);
+  12 |     productPage = new ProductPage(page);
+  13 |     await page.goto('/login');
+  14 |     await loginPage.login('sivaram579@gmail.com', 'Welcome#123');
+  15 |   });
+  16 |
+  17 |   test('should add mens tshirt to cart and place order', async ({ page }) => {
+  18 |     await allure.step('Add product to cart', async () => {
+  19 |       await productPage.addMensTshirtToCart();
+  20 |     });
+  21 |     
+  22 |     await allure.step('Proceed to checkout', async () => {
+  23 |       await productPage.proceedToCheckout();
+  24 |     });
+  25 |     
+  26 |     await allure.step('Place order', async () => {
+  27 |       await productPage.placeOrder();
+  28 |     });
+  29 |     
+  30 |     await allure.step('Fill payment details', async () => {
+  31 |       await page.fill('input[name="name_on_card"]', 'Test User');
+  32 |       await page.fill('input[name="card_number"]', '4111111111111111');
+  33 |       await page.fill('input[name="cvc"]', '123');
+  34 |       await page.fill('input[name="expiry_month"]', '12');
+  35 |       await page.fill('input[name="expiry_year"]', '2025');
+  36 |     });
+  37 |     
+  38 |     await allure.step('Submit payment', async () => {
+  39 |       await page.click('button[data-qa="pay-button"]');
+  40 |     });
+  41 |     
+  42 |     await allure.step('Verify order success', async () => {
+  43 |       const successMessage = await page.textContent('h2[data-qa="order-placed"]');
+> 44 |       expect(successMessage).toContain('ORDER PLACED!');
+     |                              ^ Error: expect(received).toContain(expected) // indexOf
+  45 |     });
+  46 |   });
+  47 | }); 
+```
