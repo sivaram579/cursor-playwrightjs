@@ -64,8 +64,3 @@ npm run test:ui
    - Proceeds to checkout
    - Places order with payment details
    - Verifies order success
-
-## Credentials
-
-- Email: sivaram579@gmail.com
-- Password: Welcome#123 
